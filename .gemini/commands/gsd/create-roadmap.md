@@ -18,11 +18,10 @@ Run after `/gsd:define-requirements`.
 </objective>
 
 <execution_context>
-@~/.gemini/get-shit-done/references/principles.md
-@~/.gemini/get-shit-done/workflows/create-roadmap.md
-@~/.gemini/get-shit-done/templates/roadmap.md
-@~/.gemini/get-shit-done/templates/state.md
-@~/.gemini/get-shit-done/references/goal-backward.md
+@./.gemini/get-shit-done/references/principles.md
+@./.gemini/get-shit-done/workflows/create-roadmap.md
+@./.gemini/get-shit-done/templates/roadmap.md
+@./.gemini/get-shit-done/templates/state.md
 </execution_context>
 
 <context>
@@ -66,10 +65,11 @@ If "Replace": Continue with workflow
 </step>
 
 <step name="create_roadmap">
-Follow the create-roadmap.md workflow starting from identify_phases step.
+Follow the create-roadmap.md workflow starting from detect_domain step.
 
 The workflow handles:
 - Loading requirements
+- Domain expertise detection
 - Phase identification mapped to requirements
 - Requirement coverage validation (no orphaned requirements)
 - Research flags for each phase
@@ -121,9 +121,7 @@ Roadmap created:
 - [ ] PROJECT.md validated
 - [ ] REQUIREMENTS.md validated
 - [ ] All v1 requirements mapped to phases (no orphans)
-- [ ] Success criteria derived for each phase (2-5 observable behaviors)
-- [ ] Success criteria cross-checked against requirements (gaps resolved)
-- [ ] ROADMAP.md created with phases, requirement mappings, and success criteria
+- [ ] ROADMAP.md created with phases and requirement mappings
 - [ ] STATE.md initialized
 - [ ] REQUIREMENTS.md traceability section updated
 - [ ] Phase directories created

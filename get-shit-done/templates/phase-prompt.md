@@ -17,7 +17,7 @@ wave: N                     # Execution wave (1, 2, 3...). Pre-computed at plan 
 depends_on: []              # Plan IDs this plan requires (e.g., ["01-01"]).
 files_modified: []          # Files this plan modifies.
 autonomous: true            # false if plan has checkpoints requiring user interaction
-user_setup: []              # Human-required setup Claude cannot automate (see below)
+user_setup: []              # Human-required setup Gemini cannot automate (see below)
 
 # Goal-backward verification (derived during planning, verified after execution)
 must_haves:
@@ -503,7 +503,7 @@ user_setup:
 
 **Result:** Execute-plan generates `{phase}-USER-SETUP.md` with checklist for the user.
 
-See `~/.claude/get-shit-done/templates/user-setup.md` for full schema and examples
+See `~/.gemini/get-shit-done/templates/user-setup.md` for full schema and examples
 
 ---
 
@@ -570,5 +570,5 @@ Task completion ≠ Goal achievement. A task "create chat component" can complet
 5. Gaps found → fix plans created → execute → re-verify
 6. All must_haves pass → phase complete
 
-See `~/.claude/get-shit-done/references/goal-backward.md` for derivation process.
-See `~/.claude/get-shit-done/workflows/verify-phase.md` for verification logic.
+See `~/.gemini/get-shit-done/references/goal-backward.md` for derivation process.
+See `~/.gemini/get-shit-done/workflows/verify-phase.md` for verification logic.

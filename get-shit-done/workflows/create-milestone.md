@@ -9,8 +9,8 @@ requirements → roadmap cycle.
 <required_reading>
 **Read these files NOW:**
 
-1. ~/.claude/get-shit-done/references/questioning.md
-2. ~/.claude/get-shit-done/templates/project.md
+1. ~/.gemini/get-shit-done/references/questioning.md
+2. ~/.gemini/get-shit-done/templates/project.md
 3. `.planning/PROJECT.md`
 4. `.planning/MILESTONES.md` (if exists)
 5. `.planning/STATE.md`

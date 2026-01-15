@@ -39,9 +39,9 @@ npx get-shit-done-gemini
 
 ## Why This Fork?
 
-This project is a dedicated fork of the excellent [Get Shit Done](https://github.com/glittercowboy/get-shit-done) system, originally built for Claude Code.
+This project is a dedicated fork of the excellent [Get Shit Done](https://github.com/glittercowboy/get-shit-done) system, originally built for Gemini CLI.
 
-While the original system revolutionized the workflow for Claude users, this fork brings the same powerful context engineering and spec-driven development principles to the **Gemini CLI**. We've adapted the prompts, templates, and installation logic to ensure seamless integration with Google's Gemini environment.
+While the original system revolutionized the workflow for Gemini users, this fork brings the same powerful context engineering and spec-driven development principles to the **Gemini CLI**. We've adapted the prompts, templates, and installation logic to ensure seamless integration with Google's Gemini environment.
 
 The philosophy remains the same: **No enterprise roleplay bullshit. Just an incredibly effective system for building cool stuff consistently.**
 
@@ -160,7 +160,7 @@ Ship your MVP in a day. Add features. Insert hotfixes. The system stays modular 
 | `/gsd:remove-phase [N]` | Remove future phase, renumber subsequent |
 | `/gsd:discuss-phase [N]` | Gather context before planning |
 | `/gsd:research-phase [N]` | Deep research for unfamiliar domains |
-| `/gsd:list-phase-assumptions [N]` | See what Claude assumes before correcting |
+| `/gsd:list-phase-assumptions [N]` | See what Gemini assumes before correcting |
 
 ### Session
 

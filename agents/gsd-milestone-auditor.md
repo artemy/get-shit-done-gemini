@@ -380,7 +380,7 @@ gaps:
 ---
 
 _Audited: {timestamp}_
-_Auditor: Claude (gsd-milestone-auditor)_
+_Auditor: Gemini (gsd-milestone-auditor)_
 ```
 
 ## Return to Orchestrator

@@ -535,7 +535,7 @@ Create or update STATE.md — the project's living memory.
 ```
 
 **If STATE_EXISTS:** Update Current Position and keep Accumulated Context.
-**If NEW_STATE:** Create fresh using template from `~/.claude/get-shit-done/templates/state.md`.
+**If NEW_STATE:** Create fresh using template from `~/.gemini/get-shit-done/templates/state.md`.
 
 Write to `.planning/STATE.md`:
 

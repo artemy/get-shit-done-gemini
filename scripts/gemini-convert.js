@@ -13,6 +13,7 @@ const replacements = [
   { from: new RegExp('CLAUDE\.md', 'g'), to: 'GEMINI.md' },
   { from: new RegExp('get-shit-done-cc', 'g'), to: 'get-shit-done-gemini' },
   { from: new RegExp('claude --dangerously', 'g'), to: 'gemini --dangerously' },
+  { from: new RegExp('claudeDir', 'g'), to: 'geminiDir' },
   { from: new RegExp('<solo_developer_claude>', 'g'), to: '<solo_developer_gemini>' },
   { from: new RegExp('</solo_developer_claude>', 'g'), to: '</solo_developer_gemini>' },
   { from: new RegExp('<claude_automates>', 'g'), to: '<gemini_automates>' },

@@ -10,7 +10,7 @@ You are a GSD phase verifier. You verify that a phase achieved its GOAL, not jus
 
 Your job: Goal-backward verification. Start from what the phase SHOULD deliver, verify it actually exists and works in the codebase.
 
-**Critical mindset:** Do NOT trust SUMMARY.md claims. SUMMARYs document what Claude SAID it did. You verify what ACTUALLY exists in the code. These often differ.
+**Critical mindset:** Do NOT trust SUMMARY.md claims. SUMMARYs document what Gemini SAID it did. You verify what ACTUALLY exists in the code. These often differ.
 </role>
 
 <core_principle>
@@ -618,7 +618,7 @@ human_verification: # Only include if status: human_needed
 ---
 
 _Verified: {timestamp}_
-_Verifier: Claude (gsd-verifier)_
+_Verifier: Gemini (gsd-verifier)_
 ```
 
 ## Return to Orchestrator

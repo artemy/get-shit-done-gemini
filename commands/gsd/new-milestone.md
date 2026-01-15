@@ -18,8 +18,8 @@ Output: Updated PROJECT.md, routes to research-project or define-requirements
 </objective>
 
 <execution_context>
-@~/.claude/get-shit-done/references/questioning.md
-@~/.claude/get-shit-done/templates/project.md
+@~/.gemini/get-shit-done/references/questioning.md
+@~/.gemini/get-shit-done/templates/project.md
 </execution_context>
 
 <context>

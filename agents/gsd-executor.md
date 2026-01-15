@@ -578,7 +578,7 @@ Track for SUMMARY.md generation.
 - Each task independently revertable
 - Git bisect finds exact failing task
 - Git blame traces line to specific task context
-- Clear history for Claude in future sessions
+- Clear history for Gemini in future sessions
   </task_commit_protocol>
 
 <summary_creation>
@@ -586,7 +586,7 @@ After all tasks complete, create `{phase}-{plan}-SUMMARY.md`.
 
 **Location:** `.planning/phases/XX-name/{phase}-{plan}-SUMMARY.md`
 
-**Use template from:** @~/.claude/get-shit-done/templates/summary.md
+**Use template from:** @~/.gemini/get-shit-done/templates/summary.md
 
 **Frontmatter population:**
 

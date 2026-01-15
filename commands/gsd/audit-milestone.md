@@ -18,7 +18,7 @@ Verify milestone achieved its definition of done. Check requirements coverage, c
 </objective>
 
 <execution_context>
-@~/.claude/get-shit-done/references/principles.md
+@~/.gemini/get-shit-done/references/principles.md
 </execution_context>
 
 <context>
