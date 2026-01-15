@@ -72,7 +72,7 @@ Check for .planning/STATE.md - loads context if project already initialized
    - TESTING.md - Test structure, coverage, practices
    - INTEGRATIONS.md - APIs, databases, external services
    - CONCERNS.md - Technical debt, risks, issues
-6. Offer next steps (typically: /gsd:new-project or /gsd:plan-phase)
+6. Offer next steps (follow 'offer_next' step in workflow)
 </process>
 
 <success_criteria>

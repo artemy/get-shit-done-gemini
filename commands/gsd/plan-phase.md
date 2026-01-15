@@ -71,6 +71,8 @@ Check for `.planning/codebase/` and load relevant documents based on phase type.
    - Break phase into tasks
    - Estimate scope and split into multiple plans if needed
    - Create PLAN.md file(s) with executable structure
+   - Commit plans to git (git_commit step)
+   - Offer next steps (offer_next step)
 </process>
 
 <success_criteria>
