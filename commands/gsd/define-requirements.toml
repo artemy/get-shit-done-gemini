@@ -1,4 +1,4 @@
-description = "Define what "done" looks like with checkable requirements"
+description = "Define what \"done\" looks like with checkable requirements"
 
 prompt = """
 <objective>
