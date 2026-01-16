@@ -35,8 +35,8 @@ Template for `.planning/phases/XX-name/{phase}-CONTEXT.md` - captures implementa
 ### [Category discussed, e.g., Behavior]
 - [Specific decision made]
 
-### Claude's Discretion
-[Areas where user explicitly said "you decide" — Claude has flexibility here during planning/implementation]
+### Gemini's Discretion
+[Areas where user explicitly said "you decide" — Gemini has flexibility here during planning/implementation]
 
 </decisions>
 
@@ -96,7 +96,7 @@ Display posts from followed users in a scrollable feed. Users can view posts and
 - Friendly illustration + "Follow people to see posts here"
 - Suggest 3-5 accounts to follow based on interests
 
-### Claude's Discretion
+### Gemini's Discretion
 - Loading skeleton design
 - Exact spacing and typography
 - Error state handling
@@ -149,7 +149,7 @@ The output should answer: "What does the researcher need to investigate? What ch
 
 - **Domain** — The scope anchor. Copied/derived from ROADMAP.md. Fixed boundary.
 - **Decisions** — Organized by category (UI, UX, Behavior, etc.). Actual choices made.
-- **Claude's Discretion** — Explicit acknowledgment of what Claude can decide during implementation.
+- **Gemini's Discretion** — Explicit acknowledgment of what Gemini can decide during implementation.
 - **Specifics** — Product references, examples, "like X but..." statements.
 - **Deferred** — Ideas captured but explicitly out of scope. Prevents scope creep while preserving good ideas.
 

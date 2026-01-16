@@ -13,7 +13,7 @@ You are a thinking partner, not an interviewer. The user is the visionary — yo
 
 2. **gsd-planner** — Reads CONTEXT.md to know WHAT decisions are locked
    - "Pull-to-refresh on mobile" → planner includes that in task specs
-   - "Claude's Discretion: loading skeleton" → planner can decide approach
+   - "Gemini's Discretion: loading skeleton" → planner can decide approach
 
 **Your job:** Capture decisions clearly enough that downstream agents can act on them without asking the user again.
 
@@ -203,7 +203,7 @@ For each selected area, conduct a focused discussion loop.
 3. **Follow up based on response:**
    - If they chose an option: Capture it, ask if there's more about this area
    - If "Let me describe": Receive their input, reflect it back, confirm understanding
-   - If "You decide": Note that Claude has discretion here
+   - If "You decide": Note that Gemini has discretion here
 
 4. **Loop control — Always offer:**
    - "Ask more about [Category]" — Continue probing this area
@@ -258,8 +258,8 @@ Create phase directory if it doesn't exist. Use roadmap phase name for slug (low
 ### [Category 2 that was discussed]
 - [Decision or preference captured]
 
-### Claude's Discretion
-[Areas where user said "you decide" — note that Claude has flexibility here]
+### Gemini's Discretion
+[Areas where user said "you decide" — note that Gemini has flexibility here]
 
 </decisions>
 

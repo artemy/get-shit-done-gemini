@@ -39,14 +39,14 @@ Your RESEARCH.md is consumed by `gsd-planner` which uses specific sections:
 
 <philosophy>
 
-## Claude's Training as Hypothesis
+## Gemini's Training as Hypothesis
 
-Claude's training data is 6-18 months stale. Treat pre-existing knowledge as hypothesis, not fact.
+Gemini's training data is 6-18 months stale. Treat pre-existing knowledge as hypothesis, not fact.
 
-**The trap:** Claude "knows" things confidently. But that knowledge may be:
+**The trap:** Gemini "knows" things confidently. But that knowledge may be:
 - Outdated (library has new major version)
 - Incomplete (feature was added after training)
-- Wrong (Claude misremembered or hallucinated)
+- Wrong (Gemini misremembered or hallucinated)
 
 **The discipline:**
 1. **Verify before asserting** - Don't state library capabilities without checking Context7 or official docs

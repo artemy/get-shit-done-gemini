@@ -16,10 +16,10 @@ The thin orchestrator pattern consolidates all planning methodology into the age
 ## Historical Reference
 
 This file previously contained:
-- Solo developer + Claude workflow philosophy
+- Solo developer + Gemini workflow philosophy
 - "Plans are prompts" principle
 - Scope control and quality degradation curve
-- "Claude automates" and "ship fast" principles
+- "Gemini automates" and "ship fast" principles
 - Anti-enterprise patterns
 
 All content preserved in `agents/gsd-planner.md`.

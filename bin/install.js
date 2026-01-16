@@ -234,7 +234,7 @@ function install(isGlobal) {
   // Copy hooks
   const hooksSrc = path.join(src, 'hooks');
   if (fs.existsSync(hooksSrc)) {
-    const hooksDest = path.join(claudeDir, 'hooks');
+    const hooksDest = path.join(geminiDir, 'hooks');
     fs.mkdirSync(hooksDest, { recursive: true });
     const hookEntries = fs.readdirSync(hooksSrc);
     for (const entry of hookEntries) {
@@ -250,11 +250,11 @@ function install(isGlobal) {
   }
 
   // Configure statusline in settings.json
-  const settingsPath = path.join(claudeDir, 'settings.json');
+  const settingsPath = path.join(geminiDir, 'settings.json');
   const settings = readSettings(settingsPath);
   const statuslineCommand = isGlobal
-    ? '$HOME/.claude/hooks/statusline.sh'
-    : '.claude/hooks/statusline.sh';
+    ? '$HOM./.gemini/hooks/statusline.sh'
+    : '.gemini/hooks/statusline.sh';
 
   return { settingsPath, settings, statuslineCommand };
 }

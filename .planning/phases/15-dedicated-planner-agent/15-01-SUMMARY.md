@@ -40,7 +40,7 @@ metrics:
    - Follows established agent patterns from Phase 13-14
 
 2. **Consolidated planning methodology from source files:**
-   - `references/principles.md` - Solo developer + Claude workflow philosophy
+   - `references/principles.md` - Solo developer + Gemini workflow philosophy
    - `workflows/plan-phase.md` - Full execution flow with 16 steps
    - `templates/phase-prompt.md` - PLAN.md structure and frontmatter
    - `references/plan-format.md` - Task anatomy and types
