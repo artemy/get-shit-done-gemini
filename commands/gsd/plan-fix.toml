@@ -14,7 +14,7 @@ Output: {plan}-FIX.md in the phase directory, ready for execution.
 </execution_context>
 
 <context>
-Plan number: $ARGUMENTS (required - e.g., "04-02" or "09-01")
+Plan number: $ARGUMENTS (required - e.g., \\"04-02\\" or \\"09-01\\")
 
 **Load project state:**
 @.planning/STATE.md
@@ -23,10 +23,10 @@ Plan number: $ARGUMENTS (required - e.g., "04-02" or "09-01")
 
 <process>
 
-<step name="parse">
+<step name=\\"parse\\">
 **Parse plan argument:**
 
-$ARGUMENTS should be a plan number like "04-02" or "09-01".
+$ARGUMENTS should be a plan number like \\"04-02\\" or \\"09-01\\".
 Extract phase number (XX) and plan number (NN).
 
 If no argument provided:
@@ -40,7 +40,7 @@ This creates a fix plan from .planning/phases/XX-name/04-02-ISSUES.md
 Exit.
 </step>
 
-<step name="find">
+<step name=\\"find\\">
 **Find ISSUES.md file:**
 
 Search for matching ISSUES.md:
@@ -58,7 +58,7 @@ If no issues were found during testing, no fix plan is needed.
 Exit.
 </step>
 
-<step name="read">
+<step name=\\"read\\">
 **Read issues:**
 
 Read the ISSUES.md file.
@@ -72,7 +72,7 @@ Parse each issue:
 Count total issues by severity.
 </step>
 
-<step name="plan">
+<step name=\\"plan\\">
 **Create fix tasks:**
 
 For each issue (or logical group):
@@ -81,7 +81,7 @@ For each issue (or logical group):
 
 Task structure:
 ```xml
-<task type="auto">
+<task type=\\"auto\\">
   <name>Fix UAT-001: [issue title]</name>
   <files>[affected files from issue]</files>
   <action>
@@ -96,7 +96,7 @@ Task structure:
 Prioritize: critical → major → minor
 </step>
 
-<step name="write">
+<step name=\\"write\\">
 **Write FIX.md:**
 
 Create `.planning/phases/XX-name/{plan}-FIX.md`:
@@ -155,7 +155,7 @@ After completion, create `.planning/phases/XX-name/{plan}-FIX-SUMMARY.md`
 ```
 </step>
 
-<step name="offer">
+<step name=\\"offer\\">
 **Offer execution:**
 
 ```

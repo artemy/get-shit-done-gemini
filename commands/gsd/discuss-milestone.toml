@@ -28,7 +28,7 @@ Output: Context gathered, then routes to /gsd:new-milestone
 1. Verify previous milestone complete (or acknowledge active milestone)
 2. Present context from previous milestone (accomplishments, phase count)
 3. Follow discuss-milestone.md workflow with **ALL questions using AskUserQuestion**:
-   - Use AskUserQuestion: "What do you want to add, improve, or fix?" with feature categories
+   - Use AskUserQuestion: \\"What do you want to add, improve, or fix?\\" with feature categories
    - Use AskUserQuestion to dig into features they mention
    - Use AskUserQuestion to help them articulate what matters most
    - Use AskUserQuestion for decision gate (ready / ask more / let me add context)

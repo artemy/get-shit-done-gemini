@@ -28,15 +28,15 @@ Normalize phase input in step 1 before any directory lookups.
 
 ```bash
 # Normalize phase number (8 → 08, but preserve decimals like 2.1 → 02.1)
-if [[ "$ARGUMENTS" =~ ^[0-9]+$ ]]; then
-  PHASE=$(printf "%02d" "$ARGUMENTS")
-elif [[ "$ARGUMENTS" =~ ^([0-9]+)\.([0-9]+)$ ]]; then
-  PHASE=$(printf "%02d.%s" "${BASH_REMATCH[1]}" "${BASH_REMATCH[2]}")
+if [[ \"$ARGUMENTS\" =~ ^[0-9]+$ ]]; then
+  PHASE=$(printf \"%02d\" \"$ARGUMENTS\")
+elif [[ \"$ARGUMENTS\" =~ ^([0-9]+)\\.([0-9]+)$ ]]; then
+  PHASE=$(printf \"%02d.%s\" \"${BASH_REMATCH[1]}\" \"${BASH_REMATCH[2]}\")
 else
-  PHASE="$ARGUMENTS"
+  PHASE=\"$ARGUMENTS\"
 fi
 
-grep -A5 "Phase ${PHASE}:" .planning/ROADMAP.md 2>/dev/null
+grep -A5 \"Phase ${PHASE}:\" .planning/ROADMAP.md 2>/dev/null
 ```
 
 **If not found:** Error and exit. **If found:** Extract phase number, name, description.
@@ -54,10 +54,10 @@ ls .planning/phases/${PHASE}-*/RESEARCH.md 2>/dev/null
 ## 3. Gather Phase Context
 
 ```bash
-grep -A20 "Phase ${PHASE}:" .planning/ROADMAP.md
+grep -A20 \"Phase ${PHASE}:\" .planning/ROADMAP.md
 cat .planning/REQUIREMENTS.md 2>/dev/null
 cat .planning/phases/${PHASE}-*/${PHASE}-CONTEXT.md 2>/dev/null
-grep -A30 "### Decisions Made" .planning/STATE.md 2>/dev/null
+grep -A30 \"### Decisions Made\" .planning/STATE.md 2>/dev/null
 ```
 
 Present summary with phase description, requirements, prior decisions.
@@ -72,9 +72,9 @@ Phase Research — investigating HOW to implement a specific phase well.
 </research_type>
 
 <key_insight>
-The question is NOT "which library should I use?"
+The question is NOT \"which library should I use?\"
 
-The question is: "What do I not know that I don't know?"
+The question is: \"What do I not know that I don't know?\"
 
 For this phase, discover:
 - What's the established architecture pattern?
@@ -104,7 +104,7 @@ Your RESEARCH.md will be loaded by `/gsd:plan-phase` which uses specific section
 - `## Common Pitfalls` → Verification steps check for these
 - `## Code Examples` → Task actions reference these patterns
 
-Be prescriptive, not exploratory. "Use X" not "Consider X or Y."
+Be prescriptive, not exploratory. \"Use X\" not \"Consider X or Y.\"
 </downstream_consumer>
 
 <quality_gate>
@@ -124,8 +124,8 @@ Write to: .planning/phases/${PHASE}-{slug}/${PHASE}-RESEARCH.md
 ```
 Task(
   prompt=filled_prompt,
-  subagent_type="gsd-phase-researcher",
-  description="Research Phase {phase}"
+  subagent_type=\"gsd-phase-researcher\",
+  description=\"Research Phase {phase}\"
 )
 ```
 
@@ -157,8 +157,8 @@ Research file: @.planning/phases/${PHASE}-{slug}/${PHASE}-RESEARCH.md
 ```
 Task(
   prompt=continuation_prompt,
-  subagent_type="gsd-phase-researcher",
-  description="Continue research Phase {phase}"
+  subagent_type=\"gsd-phase-researcher\",
+  description=\"Continue research Phase {phase}\"
 )
 ```
 

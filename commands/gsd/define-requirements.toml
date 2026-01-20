@@ -27,36 +27,36 @@ Output: `.planning/REQUIREMENTS.md`
 
 <process>
 
-<step name="validate">
+<step name=\\"validate\\">
 ```bash
 # Verify project exists
-[ -f .planning/PROJECT.md ] || { echo "ERROR: No PROJECT.md found. Run /gsd:new-project first."; exit 1; }
+[ -f .planning/PROJECT.md ] || { echo \\"ERROR: No PROJECT.md found. Run /gsd:new-project first.\\"; exit 1; }
 
 # Check for research
-[ -f .planning/research/FEATURES.md ] && echo "HAS_RESEARCH" || echo "NO_RESEARCH"
+[ -f .planning/research/FEATURES.md ] && echo \\"HAS_RESEARCH\\" || echo \\"NO_RESEARCH\\"
 
 # Check if requirements already exist
-[ -f .planning/REQUIREMENTS.md ] && echo "REQUIREMENTS_EXISTS" || echo "NO_REQUIREMENTS"
+[ -f .planning/REQUIREMENTS.md ] && echo \\"REQUIREMENTS_EXISTS\\" || echo \\"NO_REQUIREMENTS\\"
 ```
 </step>
 
-<step name="check_existing">
+<step name=\\"check_existing\\">
 **If REQUIREMENTS_EXISTS:**
 
 Use AskUserQuestion:
-- header: "Requirements exist"
-- question: "Requirements already defined. What would you like to do?"
+- header: \\"Requirements exist\\"
+- question: \\"Requirements already defined. What would you like to do?\\"
 - options:
-  - "View existing" — Show current requirements
-  - "Replace" — Define requirements fresh (will overwrite)
-  - "Cancel" — Keep existing requirements
+  - \\"View existing\\" — Show current requirements
+  - \\"Replace\\" — Define requirements fresh (will overwrite)
+  - \\"Cancel\\" — Keep existing requirements
 
-If "View existing": Read and display `.planning/REQUIREMENTS.md`, then exit
-If "Cancel": Exit
-If "Replace": Continue with workflow
+If \\"View existing\\": Read and display `.planning/REQUIREMENTS.md`, then exit
+If \\"Cancel\\": Exit
+If \\"Replace\\": Continue with workflow
 </step>
 
-<step name="execute">
+<step name=\\"execute\\">
 **If HAS_RESEARCH:**
 Follow the define-requirements.md workflow:
 - Load research features from FEATURES.md
@@ -68,7 +68,7 @@ Follow the define-requirements.md workflow:
 **If NO_RESEARCH:**
 Gather requirements through questioning:
 - Read PROJECT.md for core value and context
-- Ask: "What are the main things users need to be able to do?"
+- Ask: \\"What are the main things users need to be able to do?\\"
 - For each capability mentioned, probe for specifics
 - Group into categories (Authentication, Content, etc.)
 - For each category, ask what's v1 vs v2 vs out of scope
@@ -77,7 +77,7 @@ Gather requirements through questioning:
 Same output format either way — the difference is source (research vs conversation).
 </step>
 
-<step name="done">
+<step name=\\"done\\">
 ```
 Requirements defined:
 

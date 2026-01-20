@@ -16,7 +16,7 @@ Output: {phase}-UAT.md tracking all test results. If issues found: diagnosed gap
 
 <context>
 Phase: $ARGUMENTS (optional)
-- If provided: Test specific phase (e.g., "4")
+- If provided: Test specific phase (e.g., \"4\")
 - If not provided: Check for active sessions or prompt for phase
 
 @.planning/STATE.md
@@ -31,7 +31,7 @@ Phase: $ARGUMENTS (optional)
 5. Present tests one at a time:
    - Show expected behavior
    - Wait for plain text response
-   - "yes/y/next" = pass, anything else = issue (severity inferred)
+   - \"yes/y/next\" = pass, anything else = issue (severity inferred)
 6. Update UAT.md after each response
 7. On completion: commit, present summary
 8. If issues found:

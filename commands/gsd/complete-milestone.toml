@@ -24,7 +24,7 @@ Output: Milestone archived (roadmap + requirements), PROJECT.md evolved, git tag
 
 **User input:**
 
-- Version: {{version}} (e.g., "1.0", "1.1", "2.0")
+- Version: {{version}} (e.g., \"1.0\", \"1.1\", \"2.0\")
   </context>
 
 <process>
@@ -88,15 +88,15 @@ Output: Milestone archived (roadmap + requirements), PROJECT.md evolved, git tag
 
 6. **Update PROJECT.md:**
 
-   - Add "Current State" section with shipped version
-   - Add "Next Milestone Goals" section
+   - Add \"Current State\" section with shipped version
+   - Add \"Next Milestone Goals\" section
    - Archive previous content in `<details>` (if v1.1+)
 
 7. **Commit and tag:**
 
    - Stage: MILESTONES.md, PROJECT.md, ROADMAP.md, STATE.md, archive files
    - Commit: `chore: archive v{{version}} milestone`
-   - Tag: `git tag -a v{{version}} -m "[milestone summary]"`
+   - Tag: `git tag -a v{{version}} -m \"[milestone summary]\"`
    - Ask about pushing tag
 
 8. **Offer next steps:**

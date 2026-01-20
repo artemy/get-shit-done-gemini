@@ -10,13 +10,13 @@ Provides situational awareness before continuing work.
 
 <process>
 
-<step name="verify">
+<step name=\"verify\">
 **Verify planning structure exists:**
 
 Use Bash (not Glob) to check—Glob respects .gitignore but .planning/ is often gitignored:
 
 ```bash
-test -d .planning && echo "exists" || echo "missing"
+test -d .planning && echo \"exists\" || echo \"missing\"
 ```
 
 If no `.planning/` directory:
@@ -38,7 +38,7 @@ This means a milestone was completed and archived. Go to **Route F** (between mi
 If missing both ROADMAP.md and PROJECT.md: suggest `/gsd:new-project`.
 </step>
 
-<step name="load">
+<step name=\"load\">
 **Load full project context:**
 
 - Read `.planning/STATE.md` for living memory (position, decisions, issues)
@@ -46,15 +46,15 @@ If missing both ROADMAP.md and PROJECT.md: suggest `/gsd:new-project`.
 - Read `.planning/PROJECT.md` for current state (What This Is, Core Value, Requirements)
   </step>
 
-<step name="recent">
+<step name=\"recent\">
 **Gather recent work context:**
 
 - Find the 2-3 most recent SUMMARY.md files
 - Extract from each: what was accomplished, key decisions, any issues logged
-- This shows "what we've been working on"
+- This shows \"what we've been working on\"
   </step>
 
-<step name="position">
+<step name=\"position\">
 **Parse current position:**
 
 - From STATE.md: current phase, plan number, status
@@ -65,7 +65,7 @@ If missing both ROADMAP.md and PROJECT.md: suggest `/gsd:new-project`.
 - Check for active debug sessions: `ls .planning/debug/*.md 2>/dev/null | grep -v resolved | wc -l`
   </step>
 
-<step name="report">
+<step name=\"report\">
 **Present rich status report:**
 
 ```
@@ -102,7 +102,7 @@ CONTEXT: [✓ if CONTEXT.md exists | - if not]
 
 </step>
 
-<step name="route">
+<step name=\"route\">
 **Determine next action based on verified counts.**
 
 **Step 1: Count plans, summaries, and issues in current phase**
@@ -115,19 +115,19 @@ ls -1 .planning/phases/[current-phase-dir]/*-SUMMARY.md 2>/dev/null | wc -l
 ls -1 .planning/phases/[current-phase-dir]/*-UAT.md 2>/dev/null | wc -l
 ```
 
-State: "This phase has {X} plans, {Y} summaries."
+State: \"This phase has {X} plans, {Y} summaries.\"
 
 **Step 1.5: Check for unaddressed UAT gaps**
 
-Check for UAT.md files with status "diagnosed" (has gaps needing fixes).
+Check for UAT.md files with status \"diagnosed\" (has gaps needing fixes).
 
 ```bash
 # Check for diagnosed UAT with gaps
-grep -l "status: diagnosed" .planning/phases/[current-phase-dir]/*-UAT.md 2>/dev/null
+grep -l \"status: diagnosed\" .planning/phases/[current-phase-dir]/*-UAT.md 2>/dev/null
 ```
 
 Track:
-- `uat_with_gaps`: UAT.md files with status "diagnosed" (gaps need fixing)
+- `uat_with_gaps`: UAT.md files with status \"diagnosed\" (gaps need fixing)
 
 **Step 2: Route based on counts**
 
@@ -240,7 +240,7 @@ Read ROADMAP.md and identify:
 
 Count total phases and identify the highest phase number.
 
-State: "Current phase is {X}. Milestone has {N} phases (highest: {Y})."
+State: \"Current phase is {X}. Milestone has {N} phases (highest: {Y}).\"
 
 **Route based on milestone status:**
 
@@ -332,7 +332,7 @@ Ready to plan the next milestone.
 
 </step>
 
-<step name="edge_cases">
+<step name=\"edge_cases\">
 **Handle edge cases:**
 
 - Phase complete but next phase not planned → offer `/gsd:plan-phase [next]`

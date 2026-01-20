@@ -40,7 +40,7 @@ Phase number: $ARGUMENTS (required)
 **CRITICAL: Scope guardrail**
 - Phase boundary from ROADMAP.md is FIXED
 - Discussion clarifies HOW to implement, not WHETHER to add more
-- If user suggests new capabilities: "That's its own phase. I'll note it for later."
+- If user suggests new capabilities: \"That's its own phase. I'll note it for later.\"
 - Capture deferred ideas — don't lose them, don't act on them
 
 **Domain-aware gray areas:**
@@ -55,9 +55,9 @@ Generate 3-4 **phase-specific** gray areas, not generic categories.
 
 **Probing depth:**
 - Ask 4 questions per area before checking
-- "More questions about [area], or move to next?"
+- \"More questions about [area], or move to next?\"
 - If more → ask 4 more, check again
-- After all areas → "Ready to create context?"
+- After all areas → \"Ready to create context?\"
 
 **Do NOT ask about (Gemini handles these):**
 - Technical implementation

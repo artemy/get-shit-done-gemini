@@ -19,9 +19,9 @@ Research domain ecosystem. Spawns 4 parallel gsd-project-researcher agents for c
 ## 1. Validate Prerequisites
 
 ```bash
-[ -f .planning/PROJECT.md ] || { echo "ERROR: No PROJECT.md. Run /gsd:new-project first."; exit 1; }
-[ -f .planning/ROADMAP.md ] && echo "WARNING: ROADMAP.md exists. Research is typically done before roadmap."
-[ -d .planning/research ] && echo "RESEARCH_EXISTS" || echo "NO_RESEARCH"
+[ -f .planning/PROJECT.md ] || { echo \\"ERROR: No PROJECT.md. Run /gsd:new-project first.\\"; exit 1; }
+[ -f .planning/ROADMAP.md ] && echo \\"WARNING: ROADMAP.md exists. Research is typically done before roadmap.\\"
+[ -d .planning/research ] && echo \\"RESEARCH_EXISTS\\" || echo \\"NO_RESEARCH\\"
 ```
 
 ## 2. Handle Existing Research
@@ -43,10 +43,10 @@ Does this look right? (yes / adjust)
 
 | Dimension | Question |
 |-----------|----------|
-| Stack | "What's the standard 2025 stack for [domain]?" |
-| Features | "What features do [domain] products have?" |
-| Architecture | "How are [domain] systems structured?" |
-| Pitfalls | "What do [domain] projects get wrong?" |
+| Stack | \\"What's the standard 2025 stack for [domain]?\\" |
+| Features | \\"What features do [domain] products have?\\" |
+| Architecture | \\"How are [domain] systems structured?\\" |
+| Pitfalls | \\"What do [domain] projects get wrong?\\" |
 
 Present for approval.
 
@@ -57,13 +57,13 @@ mkdir -p .planning/research
 ```
 
 **Determine milestone context:**
-- If no "Validated" requirements in REQUIREMENTS.md → Greenfield (v1.0)
-- If "Validated" requirements exist → Subsequent milestone (v1.1+)
+- If no \\"Validated\\" requirements in REQUIREMENTS.md → Greenfield (v1.0)
+- If \\"Validated\\" requirements exist → Subsequent milestone (v1.1+)
 
 Spawn all 4 in parallel with rich context:
 
 ```
-Task(prompt="
+Task(prompt=\\"
 <research_type>
 Project Research — Stack dimension for [domain].
 </research_type>
@@ -100,9 +100,9 @@ Your STACK.md feeds into /gsd:create-roadmap. Be prescriptive:
 Write to: .planning/research/STACK.md
 Use template: ~/.gemini/get-shit-done/templates/research-project/STACK.md
 </output>
-", subagent_type="gsd-project-researcher", description="Stack research")
+\\", subagent_type=\\"gsd-project-researcher\\", description=\\"Stack research\\")
 
-Task(prompt="
+Task(prompt=\\"
 <research_type>
 Project Research — Features dimension for [domain].
 </research_type>
@@ -139,9 +139,9 @@ Your FEATURES.md feeds into /gsd:define-requirements. Categorize clearly:
 Write to: .planning/research/FEATURES.md
 Use template: ~/.gemini/get-shit-done/templates/research-project/FEATURES.md
 </output>
-", subagent_type="gsd-project-researcher", description="Features research")
+\\", subagent_type=\\"gsd-project-researcher\\", description=\\"Features research\\")
 
-Task(prompt="
+Task(prompt=\\"
 <research_type>
 Project Research — Architecture dimension for [domain].
 </research_type>
@@ -178,9 +178,9 @@ Your ARCHITECTURE.md informs phase structure in roadmap. Include:
 Write to: .planning/research/ARCHITECTURE.md
 Use template: ~/.gemini/get-shit-done/templates/research-project/ARCHITECTURE.md
 </output>
-", subagent_type="gsd-project-researcher", description="Architecture research")
+\\", subagent_type=\\"gsd-project-researcher\\", description=\\"Architecture research\\")
 
-Task(prompt="
+Task(prompt=\\"
 <research_type>
 Project Research — Pitfalls dimension for [domain].
 </research_type>
@@ -217,10 +217,10 @@ Your PITFALLS.md prevents mistakes in roadmap/planning. For each pitfall:
 Write to: .planning/research/PITFALLS.md
 Use template: ~/.gemini/get-shit-done/templates/research-project/PITFALLS.md
 </output>
-", subagent_type="gsd-project-researcher", description="Pitfalls research")
+\\", subagent_type=\\"gsd-project-researcher\\", description=\\"Pitfalls research\\")
 ```
 
-**Announce:** "Spawning 4 research agents... may take 2-3 minutes."
+**Announce:** \\"Spawning 4 research agents... may take 2-3 minutes.\\"
 
 ## 6. Synthesize Results
 
@@ -229,7 +229,7 @@ After all agents complete, read their outputs and write `.planning/research/SUMM
 - Synthesize executive summary from all 4 files
 - Add confidence assessment
 
-**Critical: Include "Implications for Roadmap" section:**
+**Critical: Include \\"Implications for Roadmap\\" section:**
 
 ```markdown
 ## Implications for Roadmap
@@ -260,12 +260,12 @@ This section directly feeds into `/gsd:create-roadmap`.
 
 ```bash
 git add .planning/research/
-git commit -m "docs: research [domain] ecosystem
+git commit -m \\"docs: research [domain] ecosystem
 
 Key findings:
 - Stack: [one-liner]
 - Architecture: [one-liner]
-- Critical pitfall: [one-liner]"
+- Critical pitfall: [one-liner]\\"
 ```
 
 ## 8. Present Results

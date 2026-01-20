@@ -13,11 +13,11 @@ Enables seamless resumption in fresh session with full context restoration.
 
 <process>
 
-<step name="detect">
+<step name=\"detect\">
 Find current phase directory from most recently modified files.
 </step>
 
-<step name="gather">
+<step name=\"gather\">
 **Collect complete state for handoff:**
 
 1. **Current position**: Which phase, which plan, which task
@@ -25,13 +25,13 @@ Find current phase directory from most recently modified files.
 3. **Work remaining**: What's left in current plan/phase
 4. **Decisions made**: Key decisions and rationale
 5. **Blockers/issues**: Anything stuck
-6. **Mental context**: The approach, next steps, "vibe"
+6. **Mental context**: The approach, next steps, \"vibe\"
 7. **Files modified**: What's changed but not committed
 
 Ask user for clarifications if needed.
 </step>
 
-<step name="write">
+<step name=\"write\">
 **Write handoff to `.planning/phases/XX-name/.continue-here.md`:**
 
 ```markdown
@@ -83,11 +83,11 @@ Start with: [specific first action when resuming]
 Be specific enough for a fresh Gemini to understand immediately.
 </step>
 
-<step name="commit">
+<step name=\"commit\">
 **Check planning config:**
 
 ```bash
-COMMIT_PLANNING_DOCS=$(cat .planning/config.json 2>/dev/null | grep -o '"commit_docs"[[:space:]]*:[[:space:]]*[^,}]*' | grep -o 'true\|false' || echo "true")
+COMMIT_PLANNING_DOCS=$(cat .planning/config.json 2>/dev/null | grep -o '\"commit_docs\"[[:space:]]*:[[:space:]]*[^,}]*' | grep -o 'true\\|false' || echo \"true\")
 git check-ignore -q .planning 2>/dev/null && COMMIT_PLANNING_DOCS=false
 ```
 
@@ -97,11 +97,11 @@ git check-ignore -q .planning 2>/dev/null && COMMIT_PLANNING_DOCS=false
 
 ```bash
 git add .planning/phases/*/.continue-here.md
-git commit -m "wip: [phase-name] paused at task [X]/[Y]"
+git commit -m \"wip: [phase-name] paused at task [X]/[Y]\"
 ```
 </step>
 
-<step name="confirm">
+<step name=\"confirm\">
 ```
 ✓ Handoff created: .planning/phases/[XX-name]/.continue-here.md
 

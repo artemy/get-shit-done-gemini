@@ -15,11 +15,11 @@ Arguments: $ARGUMENTS
 
 <process>
 
-<step name="load_history">
+<step name=\\"load_history\\">
 **Load agent history:**
 
 ```bash
-cat .planning/agent-history.json 2>/dev/null || echo '{"entries":[]}'
+cat .planning/agent-history.json 2>/dev/null || echo '{\\"entries\\":[]}'
 ```
 
 If file doesn't exist or has no entries:
@@ -31,20 +31,20 @@ Run /gsd:execute-phase to spawn parallel agents.
 Exit.
 </step>
 
-<step name="filter_agents">
+<step name=\\"filter_agents\\">
 **Find background agents:**
 
 Filter entries where:
-- `execution_mode` is "parallel" or "background"
-- `status` is "spawned" (still running) or recently completed
+- `execution_mode` is \\"parallel\\" or \\"background\\"
+- `status` is \\"spawned\\" (still running) or recently completed
 
 Group by `parallel_group` if present.
 </step>
 
-<step name="check_running">
+<step name=\\"check_running\\">
 **Check status of running agents:**
 
-For each agent with `status === "spawned"`:
+For each agent with `status === \\"spawned\\"`:
 
 Use TaskOutput tool:
 ```
@@ -54,18 +54,18 @@ timeout: 1000
 ```
 
 **If TaskOutput returns completed result:**
-- Update agent-history.json: status → "completed"
+- Update agent-history.json: status → \\"completed\\"
 - Set completion_timestamp
 - Parse files_modified from output if present
 
-**If TaskOutput returns "still running":**
+**If TaskOutput returns \\"still running\\":**
 - Keep as spawned (running)
 
 **If TaskOutput returns error:**
-- Update agent-history.json: status → "failed"
+- Update agent-history.json: status → \\"failed\\"
 </step>
 
-<step name="display">
+<step name=\\"display\\">
 **Show status table:**
 
 ```
@@ -91,10 +91,10 @@ Wait for all: /gsd:status --wait
 - ⏸ Queued (waiting for dependency)
 </step>
 
-<step name="wait_mode">
+<step name=\\"wait_mode\\">
 **If --wait flag provided:**
 
-For each agent with status "spawned":
+For each agent with status \\"spawned\\":
 
 Use TaskOutput with blocking:
 ```
@@ -123,7 +123,7 @@ Time saved: ~4m (53%)
 Update agent-history.json with completion status for each.
 </step>
 
-<step name="next_steps">
+<step name=\\"next_steps\\">
 **After all complete (or if already complete):**
 
 ```

@@ -23,11 +23,11 @@ Plan path: $ARGUMENTS
 <process>
 1. **Validate plan exists**
    - Confirm file at $ARGUMENTS exists
-   - Error if not found: "Plan not found: {path}"
+   - Error if not found: \\"Plan not found: {path}\\"
 
 2. **Check if already executed**
    - Derive SUMMARY path from plan path (replace PLAN.md with SUMMARY.md)
-   - If SUMMARY exists: "Plan already executed. SUMMARY: {path}"
+   - If SUMMARY exists: \\"Plan already executed. SUMMARY: {path}\\"
    - Offer: re-execute or exit
 
 3. **Parse plan identifiers**
@@ -70,13 +70,13 @@ Plan path: $ARGUMENTS
 
    ```
    Task(
-     prompt="Execute plan at {plan_path}
+     prompt=\\"Execute plan at {plan_path}
 
 Plan: @{plan_path}
 Project state: @.planning/STATE.md
-Config: @.planning/config.json (if exists)",
-     subagent_type="gsd-executor",
-     description="Execute {phase}-{plan}"
+Config: @.planning/config.json (if exists)\\",
+     subagent_type=\\"gsd-executor\\",
+     description=\\"Execute {phase}-{plan}\\"
    )
    ```
 
@@ -88,8 +88,8 @@ Config: @.planning/config.json (if exists)",
    - State updates
 
 6. **Handle subagent return**
-   - If contains "## CHECKPOINT REACHED": Execute checkpoint_handling
-   - If contains "## PLAN COMPLETE": Verify SUMMARY exists, report success
+   - If contains \\"## CHECKPOINT REACHED\\": Execute checkpoint_handling
+   - If contains \\"## PLAN COMPLETE\\": Verify SUMMARY exists, report success
 
 7. **Report completion and offer next steps**
    - Show SUMMARY path
@@ -121,7 +121,7 @@ When summaries = plans, verify the phase achieved its GOAL before proceeding:
 
 ```
 Task(
-  prompt="Verify phase {phase_number} goal achievement
+  prompt=\\"Verify phase {phase_number} goal achievement
 
 Phase: {phase_number} - {phase_name}
 Phase goal: {phase_goal_from_roadmap}
@@ -129,9 +129,9 @@ Phase directory: @.planning/phases/{phase_dir}/
 
 Project context:
 @.planning/ROADMAP.md
-@.planning/REQUIREMENTS.md (if exists)",
-  subagent_type="gsd-verifier",
-  description="Verify phase {phase_number}"
+@.planning/REQUIREMENTS.md (if exists)\\",
+  subagent_type=\\"gsd-verifier\\",
+  description=\\"Verify phase {phase_number}\\"
 )
 ```
 
@@ -145,9 +145,9 @@ Handle verification result:
 When summaries = plans, update REQUIREMENTS.md before presenting completion:
 
 1. Get phase number from completed plan path
-2. Read ROADMAP.md, find the phase's `Requirements:` line (e.g., "AUTH-01, AUTH-02")
+2. Read ROADMAP.md, find the phase's `Requirements:` line (e.g., \\"AUTH-01, AUTH-02\\")
 3. Read REQUIREMENTS.md traceability table
-4. For each REQ-ID in this phase: change Status from "Pending" to "Complete"
+4. For each REQ-ID in this phase: change Status from \\"Pending\\" to \\"Complete\\"
 5. Write updated REQUIREMENTS.md
 6. Stage for commit: `git add .planning/REQUIREMENTS.md`
 
@@ -283,7 +283,7 @@ How to verify:
   {numbered verification steps}
 
 ────────────────────────────────────────────────────────
-→ YOUR ACTION: Type "approved" or describe issues
+→ YOUR ACTION: Type \\"approved\\" or describe issues
 ────────────────────────────────────────────────────────
 ```
 
@@ -305,7 +305,7 @@ What you need to do:
 I'll verify: {verification}
 
 ────────────────────────────────────────────────────────
-→ YOUR ACTION: Type "done" when complete
+→ YOUR ACTION: Type \\"done\\" when complete
 ────────────────────────────────────────────────────────
 ```
 
@@ -338,9 +338,9 @@ Options:
 
 **3. Collect response:**
 Wait for user input:
-- human-verify: "approved" or description of issues
+- human-verify: \\"approved\\" or description of issues
 - decision: option selection
-- human-action: "done" when complete
+- human-action: \\"done\\" when complete
 
 **4. Spawn fresh continuation agent:**
 
@@ -348,7 +348,7 @@ Spawn fresh `gsd-executor` with continuation context:
 
 ```
 Task(
-  prompt="Continue executing plan at {plan_path}
+  prompt=\\"Continue executing plan at {plan_path}
 
 <completed_tasks>
 {completed_tasks_table from checkpoint return}
@@ -361,9 +361,9 @@ User response: {user_response}
 </resume_point>
 
 Plan: @{plan_path}
-Project state: @.planning/STATE.md",
-  subagent_type="gsd-executor",
-  description="Continue {phase}-{plan}"
+Project state: @.planning/STATE.md\\",
+  subagent_type=\\"gsd-executor\\",
+  description=\\"Continue {phase}-{plan}\\"
 )
 ```
 
@@ -373,7 +373,7 @@ The `gsd-executor` has continuation handling baked in — it will verify previou
 Task tool resume fails after multiple tool calls (presenting to user, waiting for response). Fresh agent with state handoff is the correct pattern.
 
 **5. Repeat:**
-Continue handling returns until "## PLAN COMPLETE" or user stops.
+Continue handling returns until \\"## PLAN COMPLETE\\" or user stops.
 </checkpoint_handling>
 
 <success_criteria>

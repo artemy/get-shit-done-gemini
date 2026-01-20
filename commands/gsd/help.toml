@@ -89,9 +89,9 @@ Usage: `/gsd:discuss-phase 2`
 Comprehensive ecosystem research for niche/complex domains.
 
 - Discovers standard stack, architecture patterns, pitfalls
-- Creates RESEARCH.md with "how experts build this" knowledge
+- Creates RESEARCH.md with \"how experts build this\" knowledge
 - Use for 3D, games, audio, shaders, ML, and other specialized domains
-- Goes beyond "which library" to ecosystem knowledge
+- Goes beyond \"which library\" to ecosystem knowledge
 
 Usage: `/gsd:research-phase 3`
 
@@ -151,7 +151,7 @@ Add new phase to end of current milestone.
 - Uses next sequential number
 - Updates phase directory structure
 
-Usage: `/gsd:add-phase "Add admin dashboard"`
+Usage: `/gsd:add-phase \"Add admin dashboard\"`
 
 **`/gsd:insert-phase <after> <description>`**
 Insert urgent work as decimal phase between existing phases.
@@ -160,7 +160,7 @@ Insert urgent work as decimal phase between existing phases.
 - Useful for discovered work that must happen mid-milestone
 - Maintains phase ordering
 
-Usage: `/gsd:insert-phase 7 "Fix critical auth bug"`
+Usage: `/gsd:insert-phase 7 \"Fix critical auth bug\"`
 Result: Creates Phase 7.1
 
 **`/gsd:remove-phase <number>`**
@@ -186,7 +186,7 @@ Start a new milestone through unified flow.
 
 Mirrors `/gsd:new-project` flow for brownfield projects (existing PROJECT.md).
 
-Usage: `/gsd:new-milestone "v2.0 Features"`
+Usage: `/gsd:new-milestone \"v2.0 Features\"`
 
 **`/gsd:complete-milestone <version>`**
 Archive completed milestone and prepare for next version.
@@ -243,7 +243,7 @@ Systematic debugging with persistent state across context resets.
 - Survives `/clear` — run `/gsd:debug` with no args to resume
 - Archives resolved issues to `.planning/debug/resolved/`
 
-Usage: `/gsd:debug "login button doesn't work"`
+Usage: `/gsd:debug \"login button doesn't work\"`
 Usage: `/gsd:debug` (resume active session)
 
 ### Todo Management
@@ -355,9 +355,9 @@ When `commit_docs: false`:
 Example config:
 ```json
 {
-  "planning": {
-    "commit_docs": false,
-    "search_gitignored": true
+  \"planning\": {
+    \"commit_docs\": false,
+    \"search_gitignored\": true
   }
 }
 ```
@@ -383,7 +383,7 @@ Example config:
 **Adding urgent mid-milestone work:**
 
 ```
-/gsd:insert-phase 5 "Critical security fix"
+/gsd:insert-phase 5 \"Critical security fix\"
 /gsd:plan-phase 5.1
 /gsd:execute-phase 5.1
 ```
@@ -408,7 +408,7 @@ Example config:
 **Debugging an issue:**
 
 ```
-/gsd:debug "form submission fails silently"  # Start debug session
+/gsd:debug \"form submission fails silently\"  # Start debug session
 # ... investigation happens, context fills up ...
 /clear
 /gsd:debug                                    # Resume from where you left off
