@@ -7,8 +7,8 @@ const replacements = [
   { from: new RegExp('Claude', 'g'), to: 'Gemini' },
   { from: new RegExp('claude-code', 'g'), to: 'gemini-cli' },
   { from: new RegExp('~/.claude', 'g'), to: '~/.gemini' },
-  { from: new RegExp('\\./\\.claude', 'g'), to: './.gemini' },
-  { from: new RegExp('\\.claude(?![a-zA-Z0-9])', 'g'), to: '.gemini' },
+  { from: new RegExp('\./\.claude', 'g'), to: './.gemini' },
+  { from: new RegExp('\.claude(?![a-zA-Z0-9])', 'g'), to: '.gemini' },
   { from: new RegExp('CLAUDE_CONFIG_DIR', 'g'), to: 'GEMINI_CONFIG_DIR' },
   { from: new RegExp('CLAUDE\.md', 'g'), to: 'GEMINI.md' },
   { from: new RegExp('get-shit-done-cc', 'g'), to: 'get-shit-done-gemini' },
@@ -102,7 +102,7 @@ function generateTomlConfigs() {
         
         // Parse Frontmatter using RegExp constructor to avoid syntax errors in file writing
         // Matches: Start of file, ---, newlines, content (group 1), newlines, ---, newlines, rest (group 2)
-        const frontmatterRegex = new RegExp("^---\s*[\\r\\n]+([\\s\\S]*?)[\\r\\n]+---\s*[\\r\\n]+([\\s\\S]*)$");
+        const frontmatterRegex = new RegExp('^---\s*[\\r\\n]+([\\s\\S]*?)[\\r\\n]+---\s*[\\r\\n]+([\\s\\S]*)$');
         const match = content.match(frontmatterRegex);
         
         if (match) {
@@ -110,8 +110,8 @@ function generateTomlConfigs() {
           const body = match[2].trim();
           
           // Extract description
-          const descMatch = frontmatter.match(new RegExp("description:\s*(.+)"));
-          let description = descMatch ? descMatch[1].trim() : "No description provided";
+          const descMatch = frontmatter.match(new RegExp('description:\s*(.+)'));
+          let description = descMatch ? descMatch[1].trim() : 'No description provided';
           
           // Clean quotes if present - Simplified logic
           if (description.length >= 2) {
@@ -123,10 +123,10 @@ function generateTomlConfigs() {
           }
           
           // Escape backslashes first, then quotes for TOML
-          const safeDescription = description.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+          const safeDescription = description.replace(/\\/g, '\\').replace(/"/g, '\\"');
           
           // Escape backslashes first, then triple quotes in body to avoid breaking the TOML multiline string
-          const safeBody = body.replace(/\\/g, '\\\\').replace(/"""/g, '\\"\\\"\\"');
+          const safeBody = body.replace(/\\/g, '\\').replace(/"""/g, '\\"\\\"\\"');
           
           const tomlContent = `description = "${safeDescription}"\n\nprompt = """
 ${safeBody}
@@ -159,12 +159,58 @@ function processFile(filePath) {
 
     // Specific fix for bin/install.js
     if (filePath.endsWith('bin/install.js')) {
+      
+      // --- REMOVALS FOR GEMINI CLI COMPATIBILITY ---
+      
+      // Remove forceStatusline flag
+      content = content.replace(/const forceStatusline = args.includes\('--force-statusline'\);/g, '');
+      
+      // Remove cleanupOrphanedHooks (match until verifyInstalled)
+      // Use lookahead to stop at verifyInstalled
+      content = content.replace(/\/\*\*[\s\S]*?Clean up orphaned hook registrations[\s\S]*?(?=\/\*\*[\s\S]*?Verify a directory)/g, '');
+      
+      // Remove readSettings/writeSettings (match until copyWithPathReplacement)
+      // These are usually before copyWithPathReplacement in upstream
+      // But let's just match the specific function blocks if we can, or just nuke them by name
+      content = content.replace(/\/\*\*[\s\S]*?Read and parse settings.json[\s\S]*?return \{\}\;\n\}/g, '');
+      content = content.replace(/\/\*\*[\s\S]*?Write settings.json[\s\S]*?function writeSettings\(settingsPath, settings\) \{[\s\S]*?\n\}/g, '');
+      
+      // Remove finishInstall (match until handleStatusline or promptLocation)
+      // In upstream it's before handleStatusline
+      content = content.replace(/\/\*\*[\s\S]*?Apply statusline config[\s\S]*?function finishInstall[\s\S]*?(?=\/\*\*[\s\S]*?Handle statusline)/g, '');
+      
+      // Remove handleStatusline (match until promptLocation)
+      content = content.replace(/\/\*\*[\s\S]*?Handle statusline configuration[\s\S]*?function handleStatusline[\s\S]*?(?=\/\*\*[\s\S]*?Prompt for install location)/g, '');
+
+      // Remove hooks copying block (explicit match)
+      content = content.replace(/\s+\/\* hooks[\s\S]*?failures.push\('hooks'\);\n\s+\}/g, '');
+      
+      // Remove settings.json configuration block at the end of install()
+      // Matches from "const settingsPath =" to the end of the return statement
+      content = content.replace(/const settingsPath = path.join\(geminiDir, 'settings\.json'\);[\s\S]*?return \{ settingsPath, settings, statuslineCommand \};/g, '');
+      
+      // Clean up the install function signature/return to be void or simple
+      content = content.replace(/return \{ settingsPath, settings, statuslineCommand \};/g, '');
+
+      // Remove calls to handleStatusline/finishInstall in main block
+      // Replace complicated logic with simple install() calls
+      content = content.replace(/const \{ settingsPath, settings, statuslineCommand \} = install\(true\);[\s\S]*?finishInstall\(settingsPath, settings, statuslineCommand, shouldInstallStatusline\);\n\s+\}\);/g, 'install(true);');
+      content = content.replace(/const \{ settingsPath, settings, statuslineCommand \} = install\(false\);[\s\S]*?finishInstall\(settingsPath, settings, statuslineCommand, shouldInstallStatusline\);\n\s+\}\);/g, 'install(false);');
+      content = content.replace(/const \{ settingsPath, settings, statuslineCommand \} = install\(isGlobal\);[\s\S]*?finishInstall\(settingsPath, settings, statuslineCommand, shouldInstallStatusline\);\n\s+\}\);/g, 'install(isGlobal);');
+      
+      // Remove the non-interactive fallback block inside promptLocation
+      content = content.replace(/const \{ settingsPath, settings, statuslineCommand \} = install\(true\);[\s\S]*?finishInstall\(settingsPath, settings, statuslineCommand, shouldInstallStatusline\);\n\s+\}/g, 'install(true);');
+      
+      
+      // --- INJECTIONS ---
+
       if (!content.includes("entry.name.endsWith('.toml')")) {
         content = content.replace(
           "entry.name.endsWith('.md')",
           "entry.name.endsWith('.md') || entry.name.endsWith('.toml')"
         );
       }
+      
       if (!content.includes("Installed rules")) {
          const rulesInstallBlock = 
   "\n  // Copy rules with path replacement\n" +
@@ -204,6 +250,9 @@ function processFile(filePath) {
          const searchStr = "failures.push('CHANGELOG.md');\n    }\n  }";
          content = content.replace(searchStr, searchStr + "\n" + changelogGeminiBlock);
       }
+      
+      // Cleanup any duplicate newlines created by removals
+      content = content.replace(/\n\s*\n\s*\n/g, '\n\n');
     }
 
     if (content !== original) {

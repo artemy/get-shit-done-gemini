@@ -87,7 +87,7 @@ Be specific enough for a fresh Gemini to understand immediately.
 **Check planning config:**
 
 ```bash
-COMMIT_PLANNING_DOCS=$(cat .planning/config.json 2>/dev/null | grep -o '"commit_docs"[[:space:]]*:[[:space:]]*[^,}]*' | grep -o 'true\\|false' || echo "true")
+COMMIT_PLANNING_DOCS=$(cat .planning/config.json 2>/dev/null | grep -o '"commit_docs"[[:space:]]*:[[:space:]]*[^,}]*' | grep -o 'true\|false' || echo "true")
 git check-ignore -q .planning 2>/dev/null && COMMIT_PLANNING_DOCS=false
 ```
 

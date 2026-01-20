@@ -35,7 +35,7 @@ The script performs four key operations:
     - Scans all text files (`.md`, `.js`, `.json`, etc.).
     - Replaces instances of "Gemini" with "Gemini".
     - Updates configuration paths (e.g., `~/.gemini` to `~/.gemini`).
-    - Updates CLI command references (e.g., `claude` to `gemini`).
+    - Updates CLI command references (e.g., .gemini` to `gemini`).
 
 3.  **TOML Configuration Generation**
     - Parses Markdown-based command definitions in `commands/gsd/`.
