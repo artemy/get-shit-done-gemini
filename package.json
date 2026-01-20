@@ -1,6 +1,6 @@
 {
   "name": "get-shit-done-gemini",
-  "version": "1.8.0-g",
+  "version": "1.9.1-g",
   "description": "A meta-prompting, context engineering and spec-driven development system for Gemini CLI by TÂCHES.",
   "bin": {
     "get-shit-done-gemini": "bin/install.js"
@@ -10,7 +10,8 @@
     "commands",
     "get-shit-done",
     "agents",
-    "hooks"
+    "hooks/dist",
+    "scripts"
   ],
   "keywords": [
     "ai",
@@ -36,5 +37,14 @@
   "contributors": [
     "TÂCHES (Original Author)"
   ],
-  "upstream": "https://github.com/glittercowboy/get-shit-done.git"
+  "upstream": "https://github.com/glittercowboy/get-shit-done.git",
+  "dependencies": {},
+  "devDependencies": {
+    "esbuild": "^0.24.0",
+    "sql.js": "^1.12.0"
+  },
+  "scripts": {
+    "build:hooks": "node scripts/build-hooks.js",
+    "prepublishOnly": "npm run build:hooks"
+  }
 }

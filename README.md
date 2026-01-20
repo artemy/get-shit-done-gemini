@@ -241,6 +241,50 @@ Use for: bug fixes, small features, config changes, one-off tasks.
 
 ## Why It Works
 
+### Codebase Intelligence
+
+GSD learns your codebase patterns automatically. As Gemini writes code, a PostToolUse hook indexes exports and imports, detects naming conventions, and builds a semantic understanding of your codebase.
+
+**How it works:**
+
+1. **Automatic learning** — Every time Gemini writes or edits a JS/TS file, the hook extracts exports/imports and updates `.planning/intel/index.json`
+2. **Convention detection** — Analyzes exports for naming patterns (camelCase, PascalCase, etc.), identifies directory purposes, detects file suffixes
+3. **Graph database** — Stores entity relationships in SQLite for dependency analysis
+4. **Context injection** — At session start, injects a summary into Gemini's context so it knows your codebase structure and conventions
+
+**For existing codebases:**
+
+```
+/gsd:analyze-codebase
+```
+
+Performs a bulk scan of your codebase to bootstrap the intelligence layer. Works standalone — no `/gsd:new-project` required. After initial analysis, hooks continue incremental learning.
+
+**Query the graph:**
+
+```
+/gsd:query-intel dependents src/lib/db.ts   # What depends on this file?
+/gsd:query-intel hotspots                    # Most-depended-on files
+```
+
+**Files created:**
+
+| File | Purpose |
+|------|---------|
+| `.planning/intel/index.json` | File exports and imports index |
+| `.planning/intel/conventions.json` | Detected patterns (naming, directories, suffixes) |
+| `.planning/intel/graph.db` | SQLite database with entity relationships |
+| `.planning/intel/summary.md` | Concise context for session injection |
+
+**Benefits:**
+
+- Gemini follows your naming conventions automatically
+- New files go in the right directories
+- Consistency maintained across sessions
+- Query blast radius before refactoring
+- Identify high-impact hotspot files
+- No manual documentation of patterns needed
+
 ### Context Engineering
 
 Gemini CLI is incredibly powerful *if* you give it the context it needs. Most people don't.
@@ -333,6 +377,7 @@ You're never locked in. The system adapts.
 | `/gsd:plan-phase [N]` | Research + plan + verify for a phase |
 | `/gsd:execute-phase <N>` | Execute all plans in parallel waves, verify when complete |
 | `/gsd:verify-work [N]` | Manual user acceptance testing ¹ |
+| `/gsd:audit-milestone` | Verify milestone achieved its definition of done |
 | `/gsd:complete-milestone` | Archive milestone, tag release |
 | `/gsd:new-milestone [name]` | Start next version: questions → research → requirements → roadmap |
 
@@ -342,12 +387,16 @@ You're never locked in. The system adapts.
 |---------|--------------|
 | `/gsd:progress` | Where am I? What's next? |
 | `/gsd:help` | Show all commands and usage guide |
+| `/gsd:whats-new` | See what changed since your installed version |
+| `/gsd:update` | Update GSD with changelog preview |
 
 ### Brownfield
 
 | Command | What it does |
 |---------|--------------|
 | `/gsd:map-codebase` | Analyze existing codebase before new-project |
+| `/gsd:analyze-codebase` | Bootstrap codebase intelligence for existing projects |
+| `/gsd:query-intel <type>` | Query dependency graph (dependents, hotspots) |
 
 ### Phase Management
 
@@ -356,6 +405,8 @@ You're never locked in. The system adapts.
 | `/gsd:add-phase` | Append phase to roadmap |
 | `/gsd:insert-phase [N]` | Insert urgent work between phases |
 | `/gsd:remove-phase [N]` | Remove future phase, renumber |
+| `/gsd:list-phase-assumptions [N]` | See Gemini's intended approach before planning |
+| `/gsd:plan-milestone-gaps` | Create phases to close gaps from audit |
 
 ### Session
 
@@ -368,12 +419,65 @@ You're never locked in. The system adapts.
 
 | Command | What it does |
 |---------|--------------|
+| `/gsd:settings` | Configure model profile and workflow agents |
+| `/gsd:set-profile <profile>` | Switch model profile (quality/balanced/budget) |
 | `/gsd:add-todo [desc]` | Capture idea for later |
 | `/gsd:check-todos` | List pending todos |
 | `/gsd:debug [desc]` | Systematic debugging with persistent state |
 | `/gsd:quick` | Execute ad-hoc task with GSD guarantees |
 
 <sup>¹ Contributed by reddit user OracleGreyBeard</sup>
+
+---
+
+## Configuration
+
+GSD stores project settings in `.planning/config.json`. Configure during `/gsd:new-project` or update later with `/gsd:settings`.
+
+### Core Settings
+
+| Setting | Options | Default | What it controls |
+|---------|---------|---------|------------------|
+| `mode` | `yolo`, `interactive` | `interactive` | Auto-approve vs confirm at each step |
+| `depth` | `quick`, `standard`, `comprehensive` | `standard` | Planning thoroughness (phases × plans) |
+
+### Model Profiles
+
+Control which Gemini model each agent uses. Balance quality vs token spend.
+
+| Profile | Planning | Execution | Verification |
+|---------|----------|-----------|--------------|
+| `quality` | Pro | Pro | Flash |
+| `balanced` (default) | Pro | Flash | Flash |
+| `budget` | Flash | Flash | Flash |
+
+Switch profiles:
+```
+/gsd:set-profile budget
+```
+
+Or configure via `/gsd:settings`.
+
+### Workflow Agents
+
+These spawn additional agents during planning/execution. They improve quality but add tokens and time.
+
+| Setting | Default | What it does |
+|---------|---------|--------------|
+| `workflow.research` | `true` | Researches domain before planning each phase |
+| `workflow.plan_check` | `true` | Verifies plans achieve phase goals before execution |
+| `workflow.verifier` | `true` | Confirms must-haves were delivered after execution |
+
+Use `/gsd:settings` to toggle these, or override per-invocation:
+- `/gsd:plan-phase --skip-research`
+- `/gsd:plan-phase --skip-verify`
+
+### Execution
+
+| Setting | Default | What it controls |
+|---------|---------|------------------|
+| `parallelization.enabled` | `true` | Run independent plans simultaneously |
+| `planning.commit_docs` | `true` | Track `.planning/` in git |
 
 ---
 

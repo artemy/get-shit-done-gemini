@@ -141,7 +141,8 @@ function cleanupOrphanedFiles(geminiDir) {
   const orphanedFiles = [
     'hooks/gsd-notify.sh',      // Removed in v1.6.x
     'hooks/statusline.js',      // Removed in v1.8.x (Gemini)
-    'hooks/gsd-check-update.js' // Removed in v1.8.x (Gemini)
+    'hooks/gsd-check-update.js', // Removed in v1.8.x (Gemini)
+    'hooks/gsd-statusline.js'   // Renamed upstream, removed in Gemini
   ];
 
   for (const relPath of orphanedFiles) {
